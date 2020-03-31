@@ -44,7 +44,6 @@ namespace ProgrammeringsEksamensprojekt
             Console.SetCursorPosition(startX + 1 + (width * 2), startY + 1 + height);
             //Lower right cornerpiece
             Console.Write("╝");
-            Console.ReadKey();
         }
     }
 }
