@@ -12,7 +12,7 @@ namespace ProgrammeringsEksamensprojekt
 
         public static void DrawBox(int width, int height, int startX, int startY)
         {
-            //Multiplying by 2 to make sqaures instead of rectangles, as a single character heigth equals two character width
+            //Multiplying by 2 to make sqaures instead of rectangles, since a single character heigth equals two character width
             startX = startX * 2;
             //Sets specified startposition
             Console.SetCursorPosition(startX, startY);
