@@ -10,6 +10,9 @@ namespace ProgrammeringsEksamensprojekt
     {
         static void Main(string[] args)
         {
+            Console.ReadKey();
+            Pages.AddStuff();
+            Console.ReadKey();
             Console.WriteLine("Hello world");
             Console.ReadKey();
         }
