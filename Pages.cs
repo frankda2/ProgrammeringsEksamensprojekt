@@ -10,13 +10,10 @@ namespace ProgrammeringsEksamensprojekt
     {
         static PageElement[] pageElementArray = new PageElement[2]; //For storing all page element class instances
 
-        public static void AddStuff()
+        static public PageElement[] PageElementArray //Remove static if more pages are needed
         {
-            PageElement Element1 = new PageElement(4, 4, 4, 4);
-            PageElement Element2 = new PageElement(3, 3, 10, 10);
-            pageElementArray[0] = Element1;
-            pageElementArray[1] = Element2;
-            DrawBox(pageElementArray);
+            get { return pageElementArray; }
+            set { pageElementArray = value; }
         }
 
         //Eventuelt opdater med Console.WriteLine(("").PadRight(24, '-'));
