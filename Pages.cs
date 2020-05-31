@@ -10,13 +10,13 @@ namespace ProgrammeringsEksamensprojekt
     {
         PageElement[] PageElementArray;
 
-        public static void DrawBox(int width, int height, int startX, int startY)
+        public static void DrawBox(int width, int height, int startX, int startY, string text)
         {
-            //Multiplying by 2 to make sqaures instead of rectangles, since a single character heigth equals two character width
-            startX = startX * 2;
+            //Multiplying by 2 to make squares instead of rectangles, since a single character height equals two character width
+            startX *= 2;
             //Sets specified startposition
             Console.SetCursorPosition(startX, startY);
-            //Upper left cornerpiece
+            //Upper left corner piece
             Console.Write("╔");
             //for-loop for horizontal lines
             for (int i = 0; i < width; i++)
@@ -26,7 +26,7 @@ namespace ProgrammeringsEksamensprojekt
                 Console.Write("══");
                 Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop - (height + 1));
             }
-            //Upper right cornerpiece
+            //Upper right corner piece
             Console.Write("╗");
             //Setting starting position to draw vertical lines
             Console.SetCursorPosition(startX, startY + 1);
@@ -38,12 +38,15 @@ namespace ProgrammeringsEksamensprojekt
                 Console.Write("║");
                 Console.SetCursorPosition(Console.CursorLeft - (width * 2 + 2), Console.CursorTop + 1);
             }
-            //Lower left cornerpiece
+            //Lower left corner piece
             Console.Write("╚");
-            //Position for lower right cornerpiece
+            //Position for lower right corner piece
             Console.SetCursorPosition(startX + 1 + (width * 2), startY + 1 + height);
-            //Lower right cornerpiece
+            //Lower right corner piece
             Console.Write("╝");
+
+            Console.SetCursorPosition(startX + 1, startY + 1);
+            Console.Write(text);
         }
     }
 }

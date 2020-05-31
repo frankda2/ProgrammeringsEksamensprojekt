@@ -10,7 +10,10 @@ namespace ProgrammeringsEksamensprojekt
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello world");
+            Console.ReadKey();
+            Pages.DrawBox(30, 25, 40, 5, "Login");
+            Pages.DrawBox(28, 8, 41, 10, "Username:");
+            Pages.DrawBox(28, 8, 41, 20, "Password:");
             Console.ReadKey();
         }
     }
