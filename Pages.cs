@@ -22,11 +22,11 @@ namespace ProgrammeringsEksamensprojekt
         {
             foreach(PageElement pageElement in pageElementArray)
             {
-                //Multiplying by 2 to make sqaures instead of rectangles, since a single character heigth equals two character width
-                pageElement.StartX = pageElement.StartX * 2;
+                //Multiplying by 2 to make sqaures instead of rectangles, since a single character height equals two character width
+                pageElement.StartX *= 2;
                 //Sets specified startposition
                 Console.SetCursorPosition(pageElement.StartX, pageElement.StartY);
-                //Upper left cornerpiece
+                //Upper left corner piece
                 Console.Write("╔");
                 //for-loop for horizontal lines
                 for (int i = 0; i < pageElement.Width; i++)
@@ -36,7 +36,7 @@ namespace ProgrammeringsEksamensprojekt
                     Console.Write("══");
                     Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop - (pageElement.Height + 1));
                 }
-                //Upper right cornerpiece
+                //Upper right corner piece
                 Console.Write("╗");
                 //Setting starting position to draw vertical lines
                 Console.SetCursorPosition(pageElement.StartX, pageElement.StartY + 1);
@@ -48,11 +48,11 @@ namespace ProgrammeringsEksamensprojekt
                     Console.Write("║");
                     Console.SetCursorPosition(Console.CursorLeft - (pageElement.Width * 2 + 2), Console.CursorTop + 1);
                 }
-                //Lower left cornerpiece
+                //Lower left corner piece
                 Console.Write("╚");
-                //Position for lower right cornerpiece
+                //Position for lower right corner piece
                 Console.SetCursorPosition(pageElement.StartX + 1 + (pageElement.Width * 2), pageElement.StartY + 1 + pageElement.Height);
-                //Lower right cornerpiece
+                //Lower right corner piece
                 Console.Write("╝");
             }
         }
