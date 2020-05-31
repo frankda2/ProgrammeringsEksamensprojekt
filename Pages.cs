@@ -8,19 +8,12 @@ namespace ProgrammeringsEksamensprojekt
 {
     class Pages
     {
-        static PageElement[] pageElementArray = new PageElement[2]; //For storing all page element class instances
+        //List for storing PageElement's            Invert selected box, with single box draw method, indexer - never draw 0 as it would be the sorrounding box
+        static public List<PageElement> PageElementList { get; private set; } = new List<PageElement>(); //Remove static if more pages are needed
 
-        static public PageElement[] PageElementArray //Remove static if more pages are needed
+        public static void DrawBox(List<PageElement> pageElementList) //Requires the full list of page elements
         {
-            get { return pageElementArray; }
-            set { pageElementArray = value; }
-        }
-
-        //Eventuelt opdater med Console.WriteLine(("").PadRight(24, '-'));
-
-        public static void DrawBox(PageElement[] pageElementArray) //Requires the full list of page elements
-        {
-            foreach(PageElement pageElement in pageElementArray)
+            foreach(PageElement pageElement in pageElementList)
             {
                 //Multiplying by 2 to make sqaures instead of rectangles, since a single character height equals two character width
                 pageElement.StartX *= 2;
@@ -54,6 +47,9 @@ namespace ProgrammeringsEksamensprojekt
                 Console.SetCursorPosition(pageElement.StartX + 1 + (pageElement.Width * 2), pageElement.StartY + 1 + pageElement.Height);
                 //Lower right corner piece
                 Console.Write("╝");
+
+                Console.SetCursorPosition(pageElement.StartX + 1, pageElement.StartY + 1);
+                Console.Write(pageElement.Text);
             }
         }
     }

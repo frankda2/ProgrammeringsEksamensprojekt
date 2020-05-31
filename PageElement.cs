@@ -6,43 +6,21 @@ using System.Threading.Tasks;
 
 namespace ProgrammeringsEksamensprojekt
 {
-    class PageElement
+    class PageElement //Child class til specifikke side elementer
     {
-        int width;
-        int height;
-        int startX;
-        int startY;
-
-        public PageElement(int width, int height, int startX, int startY)
+        public PageElement(int width, int height, int startX, int startY, string text)
         {
-            this.width = width;
-            this.height = height;
-            this.startX = startX;
-            this.startY = startY;
+            Width = width;
+            Height = height;
+            StartX = startX;
+            StartY = startY;
+            Text = text;
         }
 
-        public int Width
-        {
-            get { return width; }
-            set { width = value; }
-        }
-        public int Height
-        {
-            get { return height; }
-            set { height = value; }
-        }
-        public int StartX
-        {
-            get { return startX; }
-            set { startX = value; }
-        }
-        public int StartY
-        {
-            get { return startY; }
-            set { startY = value; }
-        }
-
-
-        //Child class til specifikke side elementer
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public int StartX { get; set; }
+        public int StartY { get; set; }
+        public string Text { get; set; }
     }
 }
