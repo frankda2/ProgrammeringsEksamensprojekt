@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ProgrammeringsEksamensprojekt
 {
-    class PageElement //Child class til specifikke side elementer
+    class PageElement //"Child class" til specifikke side elementer
     {
         public PageElement(int width, int height, int startX, int startY, string text)
         {
-            Width = width;
+            Width = width * 2;
             Height = height;
-            StartX = startX;
+            StartX = startX * 2;
             StartY = startY;
             Text = text;
         }

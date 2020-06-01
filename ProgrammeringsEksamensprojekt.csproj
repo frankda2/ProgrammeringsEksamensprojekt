@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MenuController.cs" />
     <Compile Include="PageElement.cs" />
     <Compile Include="Pages.cs" />
     <Compile Include="Program.cs" />
