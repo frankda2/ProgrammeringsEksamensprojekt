@@ -7,30 +7,41 @@ using System.Threading.Tasks;
 
 namespace ProgrammeringsEksamensprojekt
 {
-	class DatabaseInterface
+	static class DatabaseInterface
 	{
 		//The connection string for connecting to the database
-		private string connString = "Server=(local);" + //Server name here ex. (local) for local hosted DB
-									"Database=whm_data;" +  //Database name, DO NOT CHANGE
-									"Trusted_Connection=true";
+		private static string connString = "Server=(local), 3306;" + //Server name here ex. (local) for local hosted DB
+											"User ID=programmering;" +
+											"Password=iL6UvbPlxS9TS5KZ;" +
+											"Database=whm_data;"; //Database name, DO NOT CHANGE;
 
 		//Method for reading an item from the database, using the item number
-		public Item GetItem(int itemNo) {
+		public static void GetItem(string itemNo) {
+			Console.WriteLine("In here");
+
 			//Opening a connection to the database
 			using(SqlConnection conn = new SqlConnection(connString))
 			{
-				Item newItem; //For storing the created "item"
-
-				//Creating the commmand
-				SqlCommand command = new SqlCommand("", conn);
-
+				//Item newItem; //For storing the created "item"
 				conn.Open();
 
-				
-				
+				Console.WriteLine("conn open");
+
+				using(SqlCommand command = new SqlCommand("SELECT * FROM items WHERE item_no = " + itemNo, conn))
+				{
+					SqlDataReader reader = command.ExecuteReader();
+					while(reader.Read())
+					{
+						string item_no = reader.GetString(1);
+						string item_name = reader.GetString(2);
+
+						Console.WriteLine(item_no);
+						Console.WriteLine(item_name);
+					}
+				}
 
 				//Returning the item read from the database
-				return newItem;
+				//return newItem;
 			}
 		}
 	}

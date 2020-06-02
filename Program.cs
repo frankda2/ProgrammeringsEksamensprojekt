@@ -10,6 +10,8 @@ namespace ProgrammeringsEksamensprojekt
     {
         static void Main(string[] args)
         {
+			DatabaseInterface.GetItem("12345678");
+
             Console.WriteLine("Hello world");
             Console.ReadKey();
         }
