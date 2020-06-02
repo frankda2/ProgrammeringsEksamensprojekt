@@ -47,6 +47,27 @@ namespace ProgrammeringsEksamensprojekt
 			}
 		}
 
+		//Method returning the number of unique items in the database
+		public static long CountItems() {
+			long count = -1;
+
+			//Creating and opening a connection to the database
+			using(MySqlConnection conn = new MySqlConnection(connString))
+			{
+				conn.Open();
+
+				//Creating the command, that will be counting the items in the database
+				using(MySqlCommand command = new MySqlCommand("SELECT COUNT(*) FROM items", conn))
+				{
+					count = (Int64) command.ExecuteScalar();
+				}
+
+				conn.Close();
+			}
+
+			return count;
+		}
+
 		//Method for retreiving data related to a single location, from the location ID
 		public static void GetLocationData(int location_id, out string location_name) {
 			//Giving the out parameters a default error value
@@ -74,6 +95,27 @@ namespace ProgrammeringsEksamensprojekt
 
 				conn.Close();
 			}
+		}
+
+		//Method returning the number of unique locations in the database
+		public static long CountLocations() {
+			long count = -1;
+
+			//Creating and opening a connection to the database
+			using(MySqlConnection conn = new MySqlConnection(connString))
+			{
+				conn.Open();
+
+				//Creating the command, that will be counting the items in the database
+				using(MySqlCommand command = new MySqlCommand("SELECT COUNT(*) FROM locations", conn))
+				{
+					count = (Int64) command.ExecuteScalar();
+				}
+
+				conn.Close();
+			}
+
+			return count;
 		}
 	}
 }
