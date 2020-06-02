@@ -1,47 +1,78 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace ProgrammeringsEksamensprojekt
 {
 	static class DatabaseInterface
 	{
-		//The connection string for connecting to the database
-		private static string connString = "Server=(local), 3306;" + //Server name here ex. (local) for local hosted DB
-											"User ID=programmering;" +
-											"Password=iL6UvbPlxS9TS5KZ;" +
-											"Database=whm_data;"; //Database name, DO NOT CHANGE;
 
-		//Method for reading an item from the database, using the item number
-		public static void GetItem(string itemNo) {
-			Console.WriteLine("In here");
+		private static string connString =	"Server=localhost;" +
+											"Database=whm_data;" +
+											"Uid=root;" +
+											"Pwd=;";
 
-			//Opening a connection to the database
-			using(SqlConnection conn = new SqlConnection(connString))
+		//Method for retreiving data related to a single item, from the item number
+		public static void GetItemData(string itemNo, out string item_name, out int item_stock, out int location_id) {
+			//Giving the out parameters a default error value
+			item_name = "error";
+			item_stock = -1;
+			location_id = -1;
+
+			//Creating and opening a connection to the database
+			using(MySqlConnection conn = new MySqlConnection(connString))
 			{
-				//Item newItem; //For storing the created "item"
 				conn.Open();
 
-				Console.WriteLine("conn open");
-
-				using(SqlCommand command = new SqlCommand("SELECT * FROM items WHERE item_no = " + itemNo, conn))
+				//Creating the command, that will be reading the item
+				using(MySqlCommand command = new MySqlCommand("SELECT * FROM items WHERE item_no = " + itemNo, conn))
 				{
-					SqlDataReader reader = command.ExecuteReader();
+					//Creating a datareader for reading the data in a continous stream
+					MySqlDataReader reader = command.ExecuteReader();
 					while(reader.Read())
 					{
-						string item_no = reader.GetString(1);
-						string item_name = reader.GetString(2);
-
-						Console.WriteLine(item_no);
-						Console.WriteLine(item_name);
+						//Getting the data from the database and saving it to the out parameters
+						item_name = reader.GetString(2);
+						item_stock = reader.GetInt32(3);
+						location_id = reader.GetInt32(4);
 					}
+
+					reader.Close();
 				}
 
-				//Returning the item read from the database
-				//return newItem;
+				conn.Close();
+			}
+		}
+
+		//Method for retreiving data related to a single location, from the location ID
+		public static void GetLocationData(int location_id, out string location_name) {
+			//Giving the out parameters a default error value
+			location_name = "error";
+
+			//Creating and opening a connection to the database
+			using(MySqlConnection conn = new MySqlConnection(connString))
+			{
+				conn.Open();
+
+				//Creating the command, that will be reading the item
+				using(MySqlCommand command = new MySqlCommand("SELECT * FROM locations WHERE location_id = " + location_id.ToString(), conn))
+				{
+					//Creating a datareader for reading the data in a continous stream
+					MySqlDataReader reader = command.ExecuteReader();
+
+					while(reader.Read())
+					{
+						//Getting the data from the database and saving it to the out parameters
+						location_name = reader.GetString(1);
+					}
+
+					reader.Close();
+				}
+
+				conn.Close();
 			}
 		}
 	}

@@ -10,9 +10,19 @@ namespace ProgrammeringsEksamensprojekt
     {
         static void Main(string[] args)
         {
-			DatabaseInterface.GetItem("12345678");
+			/*
+			Item item = new Item("12345678");
 
-            Console.WriteLine("Hello world");
+			Console.WriteLine(item.ItemNo);
+			Console.WriteLine(item.Name);*/
+
+			Location location = new Location(1);
+
+			Console.WriteLine(location.Name);
+			
+			location = new Location(15);
+
+			Console.WriteLine("Hello world");
             Console.ReadKey();
         }
     }
