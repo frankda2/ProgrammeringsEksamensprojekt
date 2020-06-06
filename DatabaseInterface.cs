@@ -27,7 +27,7 @@ namespace ProgrammeringsEksamensprojekt
 				conn.Open();
 
 				//Creating the command, that will be reading the item
-				using(MySqlCommand command = new MySqlCommand("SELECT * FROM items WHERE item_no = " + itemNo, conn))
+				using(MySqlCommand command = new MySqlCommand("SELECT * FROM items WHERE item_no = \"" + itemNo + "\"", conn))
 				{
 					//Creating a datareader for reading the data in a continous stream
 					MySqlDataReader reader = command.ExecuteReader();
@@ -44,6 +44,56 @@ namespace ProgrammeringsEksamensprojekt
 
 				conn.Close();
 			}
+		}
+
+		//Method for getting an array containing all item numbers
+		public static string[] GetAllItemNumbers() {
+			//Creating the array
+			string[] itemNumbers = new string[CountItems()];
+
+			//For storing index
+			int index = 0;
+
+			//Creating and opening a connection to the database
+			using(MySqlConnection conn = new MySqlConnection(connString))
+			{
+				conn.Open();
+
+				//Creating the command, that will be reading the item
+				using(MySqlCommand command = new MySqlCommand("SELECT item_no FROM items", conn))
+				{
+					//Creating a datareader for reading the data in a continous stream
+					MySqlDataReader reader = command.ExecuteReader();
+					while(reader.Read())
+					{
+						itemNumbers[index] = reader.GetString(0);
+
+						index++;
+					}
+					
+					reader.Close();
+				}
+
+				conn.Close();
+			}
+
+			return itemNumbers;
+		}
+
+		public static Item[] GetAllItems() {
+			//Creating the array
+			Item[] items = new Item[CountItems()];
+
+			//Retreiving all item numbers
+			string[] itemNumbers = GetAllItemNumbers();
+
+			//Iterating through each item number and reading the item
+			for(int i = 0; i < CountItems(); i++)
+			{
+				items[i] = new Item(itemNumbers[i]);
+			}
+
+			return items;
 		}
 
 		//Returns true if item exists
