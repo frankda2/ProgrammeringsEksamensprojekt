@@ -22,13 +22,13 @@ namespace ProgrammeringsEksamensprojekt
         int intInputToDatabase;
 
         readonly private int function;
-        public int Width { get; set; } //Make private get or set
+        public int Width { get; set; } //Make private get or set?
         public int Height { get; set; }
         public int StartX { get; set; }
         public int StartY { get; set; }
         public string Text { get; set; }
 
-        public void PageElementFunction()
+        public void PageElementFunction() //CONSIDER MOVING TO PAGE.CS or maybe make this a child class so it inherits the menu method?
         {
             switch (function)
             {
@@ -67,8 +67,8 @@ namespace ProgrammeringsEksamensprojekt
                     break;
                 case 7:
                     //Register new product
-                    new Item(Page.ProductRegistrationPage.pageElementList[2].stringInputToDatabase, 
-                        Page.ProductRegistrationPage.pageElementList[1].stringInputToDatabase, 
+                    new Item(Page.ProductRegistrationPage.pageElementList[2].stringInputToDatabase,  //Consider PageElement function taking page as parameter
+                        Page.ProductRegistrationPage.pageElementList[1].stringInputToDatabase,      //Or moving PageElementFunction to Page.cs
                         Page.ProductRegistrationPage.pageElementList[3].intInputToDatabase, 
                         Page.ProductRegistrationPage.pageElementList[4].stringInputToDatabase);
 

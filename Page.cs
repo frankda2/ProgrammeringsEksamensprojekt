@@ -17,18 +17,18 @@ namespace ProgrammeringsEksamensprojekt
         //List for storing PageElement's
         public List<PageElement> pageElementList = new List<PageElement>(); //Should not be public
 
-        static public string[] characterSet1 = { "──", "│", "┌", "┐", "└", "┘" }; //Should not be public
-        static public string[] characterSet2 = { "══", "║", "╔", "╗", "╚", "╝" }; //Should not be public
+        static readonly string[] characterSet1 = { "──", "│", "┌", "┐", "└", "┘" };
+        static readonly string[] characterSet2 = { "══", "║", "╔", "╗", "╚", "╝" };
 
         static void MenuDefine()
         {
-            MenuPage.AddPageElement(0, 30, 15, 1 + 40, 1 + 4, "Menu");
-            MenuPage.AddPageElement(4, 28, 3, 2 + 40, 4 + 4, "Product overview");
-            MenuPage.AddPageElement(3, 28, 3, 2 + 40, 9 + 4, "Registration of new products");
-            MenuPage.AddPageElement(6, 28, 1, 2 + 40, 14 + 4, "Exit");
+            MenuPage.AddPageElement(0, 30, 14, 1 + 40, 1 + 4, "Menu");
+            MenuPage.AddPageElement(4, 28, 2, 2 + 40, 4 + 4, "Product overview");
+            MenuPage.AddPageElement(3, 28, 2, 2 + 40, 8 + 4, "Registration of new products");
+            MenuPage.AddPageElement(6, 28, 1, 2 + 40, 13 + 4, "Exit");
         }
 
-        static void RegistrationDefine()
+        static void ProductRegistrationDefine()
         {
             ProductRegistrationPage.AddPageElement(0, 30, 29, 1 + 40, 1 + 4, "Registration of new products");
             ProductRegistrationPage.AddPageElement(1, 28, 3, 2 + 40, 4 + 4, "Name:");
@@ -41,18 +41,21 @@ namespace ProgrammeringsEksamensprojekt
 
         static void ProductListDefine()
         {
-            ProductOverviewPage.AddPageElement(0, 30, 25, 1 + 40, 1 + 4, "Product overview");
-            ProductOverviewPage.AddPageElement(0, 28, 8, 2 + 40, 4 + 4, "Product list");
-            ProductOverviewPage.AddPageElement(5, 28, 1, 2 + 40, 24 + 4, "<Back");
+            ProductOverviewPage.pageElementList.Clear();
+            ProductOverviewPage.AddPageElement(0, 30, Convert.ToInt32(DatabaseInterface.CountItems()) + 8, 1 + 40, 1 + 4, "Product overview");
+            ProductOverviewPage.AddPageElement(0, 28, Convert.ToInt32(DatabaseInterface.CountItems()), 2 + 40, 4 + 4, "Product list");
+            ProductOverviewPage.AddPageElement(5, 28, 1, 2 + 40, Convert.ToInt32(DatabaseInterface.CountItems()) + 11, "<Back");
         }
 
+        //Move to PageElement?
         void AddPageElement(int function, int width, int height, int startX, int startY, string text)
         {
             PageElement Element = new PageElement(function, width, height, startX, startY, text);
             pageElementList.Add(Element);
         }
 
-        static void DrawMenu(List<PageElement> pageElementList) //Requires the full list of page elements
+        //Draws a menu set, from a list of PageElement's
+        static void DrawMenu(List<PageElement> pageElementList)
         {
             foreach (PageElement pageElement in pageElementList)
             {
@@ -112,10 +115,10 @@ namespace ProgrammeringsEksamensprojekt
             if (!defined)
             {
                 MenuDefine();
-                RegistrationDefine();
-                ProductListDefine();
+                ProductRegistrationDefine();
                 defined = true;
             }
+            ProductListDefine();
 
             ConsoleKeyInfo key;
             int indexer = 1;
