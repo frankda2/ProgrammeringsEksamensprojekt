@@ -71,11 +71,16 @@ namespace ProgrammeringsEksamensprojekt
                 case 7:
                     //Register new product
 
+                    new Item(Page.ProductRegistrationPage.pageElementList[2].stringInputToDatabase, 
+                        Page.ProductRegistrationPage.pageElementList[1].stringInputToDatabase, 
+                        Page.ProductRegistrationPage.pageElementList[3].intInputToDatabase, 
+                        Page.ProductRegistrationPage.pageElementList[4].stringInputToDatabase);
+
                     //read from specific page elements to database
-                    tempString = Page.ProductRegistrationPage.pageElementList[1].stringInputToDatabase;
-                    tempString = Page.ProductRegistrationPage.pageElementList[2].stringInputToDatabase;
-                    tempInt = Page.ProductRegistrationPage.pageElementList[3].intInputToDatabase;
-                    tempString = Page.ProductRegistrationPage.pageElementList[4].stringInputToDatabase;
+                    //tempString = Page.ProductRegistrationPage.pageElementList[1].stringInputToDatabase;
+                    //tempString = Page.ProductRegistrationPage.pageElementList[2].stringInputToDatabase;
+                    //tempInt = Page.ProductRegistrationPage.pageElementList[3].intInputToDatabase;
+                    //tempString = Page.ProductRegistrationPage.pageElementList[4].stringInputToDatabase;
 
                     for (int i = 1; i < 5; i++)
                     {
