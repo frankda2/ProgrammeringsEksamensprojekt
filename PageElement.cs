@@ -53,7 +53,12 @@ namespace ProgrammeringsEksamensprojekt
                     break;
                 case 4:
                     //Go to ProductOverviewPage
+                    Console.CursorVisible = false;
+                    int x = Console.CursorLeft;
+                    int y = Console.CursorTop;
                     Console.Clear();
+                    Console.SetCursorPosition(x, y + 1);
+                    Page.PrintAllProducts();
                     Page.Menu(Page.ProductOverviewPage);
                     break;
                 case 5:

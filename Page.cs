@@ -42,9 +42,9 @@ namespace ProgrammeringsEksamensprojekt
         static void ProductListDefine()
         {
             ProductOverviewPage.pageElementList.Clear();
-            ProductOverviewPage.AddPageElement(0, 30, Convert.ToInt32(DatabaseInterface.CountItems()) + 8, 1 + 40, 1 + 4, "Product overview");
-            ProductOverviewPage.AddPageElement(0, 28, Convert.ToInt32(DatabaseInterface.CountItems()), 2 + 40, 4 + 4, "Product list");
-            ProductOverviewPage.AddPageElement(5, 28, 1, 2 + 40, Convert.ToInt32(DatabaseInterface.CountItems()) + 11, "<Back");
+            ProductOverviewPage.AddPageElement(0, 30, Convert.ToInt32(DatabaseInterface.CountItems()) + 11, 1 + 40, 1 + 4, "Product overview");
+            ProductOverviewPage.AddPageElement(4, 28, Convert.ToInt32(DatabaseInterface.CountItems()) + 3, 2 + 40, 4 + 4, "Product list");
+            ProductOverviewPage.AddPageElement(5, 28, 1, 2 + 40, Convert.ToInt32(DatabaseInterface.CountItems()) + 14, "<Back");
         }
 
         //Move to PageElement?
@@ -118,6 +118,8 @@ namespace ProgrammeringsEksamensprojekt
                 ProductRegistrationDefine();
                 defined = true;
             }
+
+            //Gets redefined each time, as a new product might have been added
             ProductListDefine();
 
             ConsoleKeyInfo key;
@@ -147,6 +149,19 @@ namespace ProgrammeringsEksamensprojekt
             } while (key.KeyChar != 13);
 
             page.pageElementList[indexer].PageElementFunction();
+        }
+
+        public static void PrintAllProducts() //ADD SPACING.... MOVE TO PAGEELEMENT CASE?
+        {
+            int xPosition = Console.CursorLeft;
+            Item[] itemList = DatabaseInterface.GetAllItems();
+            Console.Write("Name: \t\tProduct no:\t\tStock: \t\tLocation:");
+            Console.SetCursorPosition(xPosition, Console.CursorTop + 1);
+            foreach (Item item in itemList)
+            {
+                Console.Write(item.Name + "\t\t" + item.ItemNo + "\t\t" + item.Stock + "\t\t" + item.LocationId);
+                Console.SetCursorPosition(xPosition, Console.CursorTop + 1);
+            }
         }
     }
 }
