@@ -159,7 +159,18 @@ namespace ProgrammeringsEksamensprojekt
             Console.SetCursorPosition(xPosition, Console.CursorTop + 1);
             foreach (Item item in itemList)
             {
-                Console.Write(item.Name + "\t\t" + item.ItemNo + "\t\t" + item.Stock + "\t\t" + item.LocationId);
+				string name;
+
+				if(item.Name.Length > 10)
+				{
+					name = item.Name.Remove(7) + "...";
+				}
+				else
+				{
+					name = item.Name;
+				}
+
+				Console.Write(name + "\t\t" + item.ItemNo.PadRight(10) + "\t\t" + item.Stock + "\t\t" + item.LocationId);
                 Console.SetCursorPosition(xPosition, Console.CursorTop + 1);
             }
         }
