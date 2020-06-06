@@ -75,8 +75,6 @@ namespace ProgrammeringsEksamensprojekt
 				stock = item_stock;
 				locationId = location_id;
 
-				Console.WriteLine(location_id);
-
 				//Creating the item in the database
 				DatabaseInterface.CreateItemInDB(item_no, item_name, item_stock, location_id);
 			}
@@ -89,9 +87,13 @@ namespace ProgrammeringsEksamensprojekt
 		public string GetLocationName() {
 			string location_name;
 
-			DatabaseInterface.GetLocationData(LocationId, out location_name);
+			DatabaseInterface.GetLocationData(locationId, out location_name);
 
 			return location_name;
+		}
+
+		public void RemoveFromDB() {
+			DatabaseInterface.RemoveItemFromDB(itemNo);
 		}
 	}
 }

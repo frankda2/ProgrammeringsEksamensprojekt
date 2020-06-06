@@ -142,9 +142,10 @@ namespace ProgrammeringsEksamensprojekt
 			{
 				conn.Open();
 
-				//Creating the command, that will be counting the items in the database
+				//Creating the command, that will be inserting the item into the database
 				using(MySqlCommand command = new MySqlCommand("INSERT INTO items (item_no, item_name, Stock, location_id) VALUES (@item_no, @item_name, @item_stock, @location_id)", conn))
 				{
+					//inserting values in the @parameter fields
 					command.Parameters.Add(new MySqlParameter("item_no", itemNo));
 					command.Parameters.Add(new MySqlParameter("item_name", item_name));
 					command.Parameters.Add(new MySqlParameter("item_stock", item_stock));
@@ -176,6 +177,23 @@ namespace ProgrammeringsEksamensprojekt
 			}
 
 			return count;
+		}
+
+		//Method for removing an item from the database
+		public static void RemoveItemFromDB(string itemNo) {
+			//Creating and opening a connection to the database
+			using(MySqlConnection conn = new MySqlConnection(connString))
+			{
+				conn.Open();
+
+				//Creating the command, that will be removing the item
+				using(MySqlCommand command = new MySqlCommand("DELETE FROM items WHERE item_no = \"" + itemNo + "\"", conn))
+				{
+					command.ExecuteNonQuery();
+				}
+
+				conn.Close();
+			}
 		}
 
 		//Method for retreiving data related to a single location, from the location ID
