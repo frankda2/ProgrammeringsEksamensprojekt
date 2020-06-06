@@ -32,8 +32,9 @@ namespace ProgrammeringsEksamensprojekt
 			get => locationId;
 		}
 
+		//For creating an Item by reading from the database	
 		public Item(string item_no) {
-			DatabaseInterface.GetItemData(item_no, out string item_name, out int item_stock, out int location_id) ;
+			DatabaseInterface.GetItemData(item_no, out string item_name, out int item_stock, out int location_id);
 
 			//Checking that the item number exists
 			if(item_name != "error")
@@ -46,6 +47,42 @@ namespace ProgrammeringsEksamensprojekt
 			else
 			{
 				Console.WriteLine("An item with the item number: " + item_no + " could not be found");
+			}
+		}
+
+		//For creating a new item in the database
+		public Item(string item_no, string item_name, int item_stock, string location_name) {
+			//Int for storing the location id
+			int location_id = -1;
+
+			//Check if item number is available
+			if(!DatabaseInterface.DoesItemExist(item_no))
+			{
+				//Checking if the location exists
+				//If a location with the given name doesn't exist 
+				if(!DatabaseInterface.DoesLocationExist(location_name))
+				{
+					//The location is created
+					DatabaseInterface.CreateLocationInDB(location_name);
+				}
+
+				//And the id is fetched
+				DatabaseInterface.GetLocationData(location_name, out location_id);
+
+				//Setting the objects variables
+				itemNo = item_no;
+				name = item_name;
+				stock = item_stock;
+				locationId = location_id;
+
+				Console.WriteLine(location_id);
+
+				//Creating the item in the database
+				DatabaseInterface.CreateItemInDB(item_no, item_name, item_stock, location_id);
+			}
+			else
+			{
+				Console.WriteLine("An item with the item number: " + item_no + " does already exist");
 			}
 		}
 	}
