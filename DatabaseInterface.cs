@@ -9,7 +9,6 @@ namespace ProgrammeringsEksamensprojekt
 {
 	static class DatabaseInterface
 	{
-
 		private static string connString =	"Server=localhost;" +
 											"Database=whm_data;" +
 											"Uid=root;" +
