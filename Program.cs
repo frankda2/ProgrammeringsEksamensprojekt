@@ -10,8 +10,16 @@ namespace ProgrammeringsEksamensprojekt
     {
         static void Main(string[] args)
         {
+            Startup();
             Console.ReadKey();
-            MenuController.Menu();
+        }
+
+        static void Startup()
+        {
+            Console.WriteLine("");
+            Console.ReadKey(true);
+            Console.CursorVisible = false;
+            Page.Menu(Page.MenuPage);
         }
     }
 }
