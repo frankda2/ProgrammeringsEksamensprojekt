@@ -10,23 +10,16 @@ namespace ProgrammeringsEksamensprojekt
     {
         static void Main(string[] args)
         {
-			/*
-			Item item = new Item("12345678");
-
-			Console.WriteLine(item.ItemNo);
-			Console.WriteLine(item.Name);
-
-			Location location = new Location(1);
-
-			Console.WriteLine(location.Name);
-			
-			location = new Location(15);*/
-
-			Console.WriteLine(DatabaseInterface.CountItems());
-			Console.WriteLine(DatabaseInterface.CountLocations());
-
-			Console.WriteLine("Hello world");
+            Startup();
             Console.ReadKey();
+        }
+
+        static void Startup()
+        {
+            Console.WriteLine("");
+            Console.ReadKey(true);
+            Console.CursorVisible = false;
+            Page.Menu(Page.MenuPage);
         }
     }
 }

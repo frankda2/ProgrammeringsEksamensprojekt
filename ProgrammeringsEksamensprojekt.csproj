@@ -49,6 +49,8 @@
     <Compile Include="DatabaseInterface.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Location.cs" />
+    <Compile Include="PageElement.cs" />
+    <Compile Include="Page.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
