@@ -85,5 +85,13 @@ namespace ProgrammeringsEksamensprojekt
 				Console.WriteLine("An item with the item number: " + item_no + " does already exist");
 			}
 		}
+
+		public string GetLocationName() {
+			string location_name;
+
+			DatabaseInterface.GetLocationData(LocationId, out location_name);
+
+			return location_name;
+		}
 	}
 }
