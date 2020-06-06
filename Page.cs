@@ -155,7 +155,7 @@ namespace ProgrammeringsEksamensprojekt
         {
             int xPosition = Console.CursorLeft;
             Item[] itemList = DatabaseInterface.GetAllItems();
-            Console.Write("Name: \t\tProduct no:\t\tStock: \t\tLocation:");
+            Console.Write("Name: \t\tProduct no:\tStock: \tLocation:");
             Console.SetCursorPosition(xPosition, Console.CursorTop + 1);
             foreach (Item item in itemList)
             {
@@ -170,7 +170,7 @@ namespace ProgrammeringsEksamensprojekt
 					name = item.Name;
 				}
 
-				Console.Write(name + "\t\t" + item.ItemNo.PadRight(10) + "\t\t" + item.Stock + "\t\t" + item.LocationId);
+				Console.Write(name + "\t\t" + item.ItemNo.PadRight(10) + "\t" + item.Stock + "\t" + item.LocationId);
                 Console.SetCursorPosition(xPosition, Console.CursorTop + 1);
             }
         }
