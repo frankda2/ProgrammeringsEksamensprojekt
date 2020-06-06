@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProgrammeringsEksamensprojekt
 {
-    class PageElement //"Child class" til specifikke side elementer
+    class PageElement
     {
         public PageElement(int function, int width, int height, int startX, int startY, string text)
         {
@@ -24,7 +24,7 @@ namespace ProgrammeringsEksamensprojekt
         string stringInputToDatabase;
         int intInputToDatabase;
 
-        readonly private int function; //remove readonly?
+        readonly private int function;
         public int Width { get; set; } //Make private get or set
         public int Height { get; set; }
         public int StartX { get; set; }
@@ -40,7 +40,7 @@ namespace ProgrammeringsEksamensprojekt
                     Console.CursorVisible = true;
                     this.stringInputToDatabase = Console.ReadLine();
                     Console.CursorVisible = false;
-                    Page.Menu(Page.ProductRegistrationPage); //remove?
+                    Page.Menu(Page.ProductRegistrationPage);
                     break;
                 case 2:
                     //Numeric input field
@@ -77,14 +77,11 @@ namespace ProgrammeringsEksamensprojekt
                     tempInt = Page.ProductRegistrationPage.pageElementList[3].intInputToDatabase;
                     tempString = Page.ProductRegistrationPage.pageElementList[4].stringInputToDatabase;
 
-                    Console.SetCursorPosition(Page.ProductRegistrationPage.pageElementList[1].StartX + 1, Page.ProductRegistrationPage.pageElementList[1].StartY + 2);
-                    Console.WriteLine(new string(' ', 56)); //Should not be a fixed value
-                    Console.SetCursorPosition(Page.ProductRegistrationPage.pageElementList[2].StartX + 1, Page.ProductRegistrationPage.pageElementList[2].StartY + 2);
-                    Console.WriteLine(new string(' ', 56)); //Should not be a fixed value
-                    Console.SetCursorPosition(Page.ProductRegistrationPage.pageElementList[3].StartX + 1, Page.ProductRegistrationPage.pageElementList[3].StartY + 2);
-                    Console.WriteLine(new string(' ', 56)); //Should not be a fixed value
-                    Console.SetCursorPosition(Page.ProductRegistrationPage.pageElementList[4].StartX + 1, Page.ProductRegistrationPage.pageElementList[4].StartY + 2);
-                    Console.WriteLine(new string(' ', 56)); //Should not be a fixed value
+                    for (int i = 1; i < 5; i++)
+                    {
+                        Console.SetCursorPosition(Page.ProductRegistrationPage.pageElementList[i].StartX + 1, Page.ProductRegistrationPage.pageElementList[i].StartY + 2);
+                        Console.WriteLine(new string(' ', 56)); //Should prob not be a fixed value
+                    }
                     Page.Menu(Page.ProductRegistrationPage);
                     break;
 
