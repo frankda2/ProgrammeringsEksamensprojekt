@@ -22,30 +22,30 @@ namespace ProgrammeringsEksamensprojekt
 
         static void MenuDefine()
         {
-            MenuPage.AddPageElement(0, 30, 14, 1 + 40, 1 + 4, "Menu");
-            MenuPage.AddPageElement(4, 28, 2, 2 + 40, 4 + 4, "Product overview");
-            MenuPage.AddPageElement(3, 28, 2, 2 + 40, 8 + 4, "Registration of new products");
-            MenuPage.AddPageElement(6, 28, 1, 2 + 40, 13 + 4, "Exit");
+            MenuPage.AddPageElement(0, 30, 14, 1/* + 40*/, 1/* + 4*/, "Menu");
+            MenuPage.AddPageElement(4, 28, 2, 2/* + 40*/, 4/* + 4*/, "Product overview");
+            MenuPage.AddPageElement(3, 28, 2, 2/* + 40*/, 8/* + 4*/, "Registration of new products");
+            MenuPage.AddPageElement(6, 28, 1, 2/* + 40*/, 13/* + 4*/, "Exit");
         }
 
         static void ProductRegistrationDefine()
         {
-            ProductRegistrationPage.AddPageElement(0, 30, 29, 1 + 40, 1 + 4, "Registration of new products");
-            ProductRegistrationPage.AddPageElement(1, 28, 3, 2 + 40, 4 + 4, "Name:");
-            ProductRegistrationPage.AddPageElement(1, 28, 3, 2 + 40, 9 + 4, "Product number:");
-            ProductRegistrationPage.AddPageElement(2, 28, 3, 2 + 40, 14 + 4, "Amount:");
-            ProductRegistrationPage.AddPageElement(1, 28, 3, 2 + 40, 19 + 4, "Location:");
-            ProductRegistrationPage.AddPageElement(8, 28, 1, 2 + 40, 24 + 4, "Register product");
-            ProductRegistrationPage.AddPageElement(5, 28, 1, 2 + 40, 28 + 4, "<Back");
+            ProductRegistrationPage.AddPageElement(0, 30, 29, 1/* + 40*/, 1/* + 4*/, "Registration of new products");
+            ProductRegistrationPage.AddPageElement(1, 28, 3, 2/* + 40*/, 4/* + 4*/, "Name:");
+            ProductRegistrationPage.AddPageElement(1, 28, 3, 2/* + 40*/, 9/* + 4*/, "Product number:");
+            ProductRegistrationPage.AddPageElement(2, 28, 3, 2/* + 40*/, 14/* + 4*/, "Amount:");
+            ProductRegistrationPage.AddPageElement(1, 28, 3, 2/* + 40*/, 19/* + 4*/, "Location:");
+            ProductRegistrationPage.AddPageElement(8, 28, 1, 2/* + 40*/, 24/* + 4*/, "Register product");
+            ProductRegistrationPage.AddPageElement(5, 28, 1, 2/* + 40*/, 28/* + 4*/, "<Back");
         }
 
         static void ProductListDefine()
         {
             ProductOverviewPage.pageElementList.Clear();
-            ProductOverviewPage.AddPageElement(0, 30, Convert.ToInt32(DatabaseInterface.CountItems()) + 15, 1 + 40, 1 + 4, "Product overview");
-            ProductOverviewPage.AddPageElement(4, 28, Convert.ToInt32(DatabaseInterface.CountItems()) + 3, 2 + 40, 4 + 4, "Product list");
-            ProductOverviewPage.AddPageElement(7, 28, 2, 2 + 40, Convert.ToInt32(DatabaseInterface.CountItems()) + 13, "Remove product - enter product number");
-            ProductOverviewPage.AddPageElement(5, 28, 1, 2 + 40, Convert.ToInt32(DatabaseInterface.CountItems()) + 18, "<Back");
+            ProductOverviewPage.AddPageElement(0, 30, Convert.ToInt32(DatabaseInterface.CountItems()) + 15, 1/* + 40*/, 1/* + 4*/, "Product overview");
+            ProductOverviewPage.AddPageElement(4, 28, Convert.ToInt32(DatabaseInterface.CountItems()) + 3, 2/* + 40*/, 4/* + 4*/, "Product list");
+            ProductOverviewPage.AddPageElement(7, 28, 2, 2/* + 40*/, Convert.ToInt32(DatabaseInterface.CountItems()) + 9/* + 4*/, "Remove product - enter product number");
+            ProductOverviewPage.AddPageElement(5, 28, 1, 2/* + 40*/, Convert.ToInt32(DatabaseInterface.CountItems()) + 14/* + 4*/, "<Back");
         }
 
         //Move to PageElement?
