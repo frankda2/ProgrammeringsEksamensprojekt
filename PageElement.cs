@@ -26,7 +26,7 @@ namespace ProgrammeringsEksamensprojekt
         public string Text { get; set; }
 
         private string stringInputToDatabase;
-        private int intInputToDatabase;
+        private int intInputToDatabase = 0;
 
         public static bool productRemoved = true;
         static int lineWidth = 56;
@@ -156,16 +156,22 @@ namespace ProgrammeringsEksamensprojekt
 
                 case 8:
                     //Register new product
-                    new Item(Page.ProductRegistrationPage.pageElementList[2].stringInputToDatabase,  //Consider PageElement function taking page as parameter
-                             Page.ProductRegistrationPage.pageElementList[1].stringInputToDatabase,      //Or moving PageElementFunction to Page.cs
-                             Page.ProductRegistrationPage.pageElementList[3].intInputToDatabase, 
-                             Page.ProductRegistrationPage.pageElementList[4].stringInputToDatabase);
+                    if (!string.IsNullOrEmpty(Page.ProductRegistrationPage.pageElementList[2].stringInputToDatabase) && 
+                        !string.IsNullOrEmpty(Page.ProductRegistrationPage.pageElementList[1].stringInputToDatabase) && 
+                        !string.IsNullOrEmpty(Page.ProductRegistrationPage.pageElementList[4].stringInputToDatabase))
+                    {
+                        new Item(Page.ProductRegistrationPage.pageElementList[2].stringInputToDatabase,
+                                 Page.ProductRegistrationPage.pageElementList[1].stringInputToDatabase,
+                                 Page.ProductRegistrationPage.pageElementList[3].intInputToDatabase,
+                                 Page.ProductRegistrationPage.pageElementList[4].stringInputToDatabase);
+                    }
 
                     for (int i = 1; i < 5; i++)
                     {
                         Console.SetCursorPosition(Page.ProductRegistrationPage.pageElementList[i].StartX + 1, Page.ProductRegistrationPage.pageElementList[i].StartY + 2);
                         Console.WriteLine(new string(' ', lineWidth)); //Should prob not be a fixed value
                     }
+
                     Page.Menu(Page.ProductRegistrationPage);
                     break;
 
