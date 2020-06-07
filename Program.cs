@@ -17,7 +17,7 @@ namespace ProgrammeringsEksamensprojekt
         static void Startup()
         {
             Console.WriteLine("");
-            Console.ReadKey(true);
+            Console.ReadKey();
             Console.CursorVisible = false;
             Page.Menu(Page.MenuPage);
         }

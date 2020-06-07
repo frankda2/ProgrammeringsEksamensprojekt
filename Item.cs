@@ -43,10 +43,13 @@ namespace ProgrammeringsEksamensprojekt
 				name = item_name;
 				stock = item_stock;
 				locationId = location_id;
-			}
+                PageElement.productRemoved = true;
+            }
 			else
 			{
 				Console.WriteLine("An item with the item number: " + item_no + " could not be found");
+                PageElement.productRemoved = false;
+                Console.ReadKey(true);
 			}
 		}
 

@@ -18,9 +18,6 @@ namespace ProgrammeringsEksamensprojekt
             Text = text;
         }
 
-        string stringInputToDatabase;
-        int intInputToDatabase;
-
         readonly private int function;
         public int Width { get; set; } //Make private get or set?
         public int Height { get; set; }
@@ -28,54 +25,98 @@ namespace ProgrammeringsEksamensprojekt
         public int StartY { get; set; }
         public string Text { get; set; }
 
-        public void PageElementFunction() //CONSIDER MOVING TO PAGE.CS or maybe make this a child class so it inherits the menu method?
+        private string stringInputToDatabase;
+        private int intInputToDatabase;
+
+        public static bool productRemoved = true;
+
+        string LimitCharacterAmount(int limit)
+        {
+            Console.SetCursorPosition(StartX + 1, StartY + 2);
+            string str = string.Empty;
+            do
+            {
+                char c = Console.ReadKey().KeyChar;
+                if (c == 13)
+                {
+                    break;
+                }
+                str += c;
+            } while (str.Length < limit);
+            return str;
+        }
+
+        public void PageElementFunction()
         {
             switch (function)
             {
                 case 1:
                     //Text input field
+                    Console.WriteLine(new string(' ', 56));
+
                     Console.CursorVisible = true;
-                    this.stringInputToDatabase = Console.ReadLine();
+
+                    this.stringInputToDatabase = LimitCharacterAmount(20);
+
                     Console.CursorVisible = false;
                     Page.Menu(Page.ProductRegistrationPage);
                     break;
+
                 case 2:
                     //Numeric input field
+                    Console.WriteLine(new string(' ', 56));
+                    Console.SetCursorPosition(StartX + 1, StartY + 2);
+
                     Console.CursorVisible = true;
-                    this.intInputToDatabase = Convert.ToInt32(Console.ReadLine()); //Fix with tryparse later
+
+                    int parsed;
+                    string str;
+
+                    do
+                    {
+                        Console.SetCursorPosition(StartX + 1, StartY + 2);
+                        Console.WriteLine(new string(' ', 56));
+                        str = LimitCharacterAmount(7);
+                    } while (int.TryParse(str, out parsed) == false);
+
+                    this.intInputToDatabase = parsed;
+
                     Console.CursorVisible = false;
                     Page.Menu(Page.ProductRegistrationPage);
                     break;
+
                 case 3:
                     //Go to ProductRegistrationPage
                     Console.Clear();
                     Page.Menu(Page.ProductRegistrationPage);
                     break;
+
                 case 4:
                     //Go to ProductOverviewPage
                     Console.CursorVisible = false;
-                    int x = Console.CursorLeft;
-                    int y = Console.CursorTop;
                     Console.Clear();
-                    Console.SetCursorPosition(x, y + 1);
+                    Console.SetCursorPosition(StartX + 1, StartY + 3);
                     Page.PrintAllProducts();
                     Page.Menu(Page.ProductOverviewPage);
                     break;
+
                 case 5:
                     //Go to MenuPage
                     Console.Clear();
                     Page.Menu(Page.MenuPage);
                     break;
+
                 case 6:
                     //Exit application
                     Environment.Exit(0);
                     break;
+
                 case 7:
                     //Register new product
                     new Item(Page.ProductRegistrationPage.pageElementList[2].stringInputToDatabase,  //Consider PageElement function taking page as parameter
-                        Page.ProductRegistrationPage.pageElementList[1].stringInputToDatabase,      //Or moving PageElementFunction to Page.cs
-                        Page.ProductRegistrationPage.pageElementList[3].intInputToDatabase, 
-                        Page.ProductRegistrationPage.pageElementList[4].stringInputToDatabase);
+                             Page.ProductRegistrationPage.pageElementList[1].stringInputToDatabase,      //Or moving PageElementFunction to Page.cs
+                             Page.ProductRegistrationPage.pageElementList[3].intInputToDatabase, 
+                             Page.ProductRegistrationPage.pageElementList[4].stringInputToDatabase);
 
                     for (int i = 1; i < 5; i++)
                     {
@@ -83,6 +124,31 @@ namespace ProgrammeringsEksamensprojekt
                         Console.WriteLine(new string(' ', 56)); //Should prob not be a fixed value
                     }
                     Page.Menu(Page.ProductRegistrationPage);
+                    break;
+
+                case 8:
+                    //Delete product from product number
+                    Console.CursorVisible = true;
+                    string productNo = LimitCharacterAmount(20);
+                    Console.CursorVisible = false;
+
+                    
+                    Console.SetCursorPosition(StartX - 1, StartY + 9);
+                    Item product = new Item(productNo);
+                    product.RemoveFromDB();
+
+                    if (productRemoved)
+                    {
+                        Console.Clear();
+                        Console.SetCursorPosition(StartX + 1, StartY - 3 - Convert.ToInt32(DatabaseInterface.CountItems()));
+                        Page.PrintAllProducts();
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(StartX + 1, StartY + 2);
+                        Console.WriteLine(new string(' ', 56));
+                    }
+                    Page.Menu(Page.ProductOverviewPage);
                     break;
 
             }

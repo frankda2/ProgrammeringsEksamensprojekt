@@ -42,9 +42,10 @@ namespace ProgrammeringsEksamensprojekt
         static void ProductListDefine()
         {
             ProductOverviewPage.pageElementList.Clear();
-            ProductOverviewPage.AddPageElement(0, 30, Convert.ToInt32(DatabaseInterface.CountItems()) + 11, 1 + 40, 1 + 4, "Product overview");
+            ProductOverviewPage.AddPageElement(0, 30, Convert.ToInt32(DatabaseInterface.CountItems()) + 15, 1 + 40, 1 + 4, "Product overview");
             ProductOverviewPage.AddPageElement(4, 28, Convert.ToInt32(DatabaseInterface.CountItems()) + 3, 2 + 40, 4 + 4, "Product list");
-            ProductOverviewPage.AddPageElement(5, 28, 1, 2 + 40, Convert.ToInt32(DatabaseInterface.CountItems()) + 14, "<Back");
+            ProductOverviewPage.AddPageElement(8, 28, 2, 2 + 40, Convert.ToInt32(DatabaseInterface.CountItems()) + 13, "Remove product - enter product number");
+            ProductOverviewPage.AddPageElement(5, 28, 1, 2 + 40, Convert.ToInt32(DatabaseInterface.CountItems()) + 18, "<Back");
         }
 
         //Move to PageElement?
@@ -151,7 +152,7 @@ namespace ProgrammeringsEksamensprojekt
             page.pageElementList[indexer].PageElementFunction();
         }
 
-        public static void PrintAllProducts() //ADD SPACING.... MOVE TO PAGEELEMENT CASE?
+        public static void PrintAllProducts()
         {
             int xPosition = Console.CursorLeft;
             Item[] itemList = DatabaseInterface.GetAllItems();
@@ -161,7 +162,7 @@ namespace ProgrammeringsEksamensprojekt
             {
 				string name;
 
-				if(item.Name.Length > 10)
+                if (item.Name.Length > 10)
 				{
 					name = item.Name.Remove(7) + "...";
 				}
@@ -170,7 +171,7 @@ namespace ProgrammeringsEksamensprojekt
 					name = item.Name;
 				}
 
-				Console.Write(name + "\t\t" + item.ItemNo.PadRight(10) + "\t" + item.Stock + "\t" + item.LocationId);
+				Console.Write(name + "\t\t" + item.ItemNo.PadRight(10) + "\t" + item.Stock + "\t" + item.GetLocationName());
                 Console.SetCursorPosition(xPosition, Console.CursorTop + 1);
             }
         }
