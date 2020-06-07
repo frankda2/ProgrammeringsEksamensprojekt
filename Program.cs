@@ -14,6 +14,7 @@ namespace ProgrammeringsEksamensprojekt
             Console.ReadKey();
         }
 
+        //Controls startup of program
         static void Startup()
         {
             Console.SetWindowSize(66, 34);
