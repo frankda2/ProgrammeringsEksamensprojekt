@@ -16,8 +16,9 @@ namespace ProgrammeringsEksamensprojekt
 
         static void Startup()
         {
-            Console.WriteLine("");
+            Console.WriteLine("Please resize window to maximum size before proceeding");
             Console.ReadKey();
+            Console.Clear();
             Console.CursorVisible = false;
             Page.Menu(Page.MenuPage);
         }

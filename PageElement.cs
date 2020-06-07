@@ -29,6 +29,7 @@ namespace ProgrammeringsEksamensprojekt
         private int intInputToDatabase;
 
         public static bool productRemoved = true;
+        static int lineWidth = 56;
 
         string LimitCharacterAmount(int limit)
         {
@@ -37,11 +38,21 @@ namespace ProgrammeringsEksamensprojekt
             do
             {
                 char c = Console.ReadKey().KeyChar;
-                if (c == 13)
+                if (c == 13) //Enter
                 {
                     break;
+                }else if (c == 8) //Backspace
+                {
+                    str = str.Remove(str.Length - 1);
+                    int x = Console.CursorLeft;
+                    int y = Console.CursorTop;
+                    Console.Write(" ");
+                    Console.SetCursorPosition(x, y);
                 }
-                str += c;
+                else
+                {
+                    str += c;
+                }
             } while (str.Length < limit);
             return str;
         }
@@ -52,7 +63,7 @@ namespace ProgrammeringsEksamensprojekt
             {
                 case 1:
                     //Text input field
-                    Console.WriteLine(new string(' ', 56));
+                    Console.WriteLine(new string(' ', lineWidth));
 
                     Console.CursorVisible = true;
 
@@ -64,7 +75,7 @@ namespace ProgrammeringsEksamensprojekt
 
                 case 2:
                     //Numeric input field
-                    Console.WriteLine(new string(' ', 56));
+                    Console.WriteLine(new string(' ', lineWidth));
                     Console.SetCursorPosition(StartX + 1, StartY + 2);
 
                     Console.CursorVisible = true;
@@ -75,7 +86,7 @@ namespace ProgrammeringsEksamensprojekt
                     do
                     {
                         Console.SetCursorPosition(StartX + 1, StartY + 2);
-                        Console.WriteLine(new string(' ', 56));
+                        Console.WriteLine(new string(' ', lineWidth));
                         str = LimitCharacterAmount(7);
                     } while (int.TryParse(str, out parsed) == false);
 
@@ -121,7 +132,7 @@ namespace ProgrammeringsEksamensprojekt
                     for (int i = 1; i < 5; i++)
                     {
                         Console.SetCursorPosition(Page.ProductRegistrationPage.pageElementList[i].StartX + 1, Page.ProductRegistrationPage.pageElementList[i].StartY + 2);
-                        Console.WriteLine(new string(' ', 56)); //Should prob not be a fixed value
+                        Console.WriteLine(new string(' ', lineWidth)); //Should prob not be a fixed value
                     }
                     Page.Menu(Page.ProductRegistrationPage);
                     break;
@@ -146,7 +157,7 @@ namespace ProgrammeringsEksamensprojekt
                     else
                     {
                         Console.SetCursorPosition(StartX + 1, StartY + 2);
-                        Console.WriteLine(new string(' ', 56));
+                        Console.WriteLine(new string(' ', lineWidth));
                     }
                     Page.Menu(Page.ProductOverviewPage);
                     break;
