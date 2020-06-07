@@ -35,7 +35,7 @@ namespace ProgrammeringsEksamensprojekt
             ProductRegistrationPage.AddPageElement(1, 28, 3, 2 + 40, 9 + 4, "Product number:");
             ProductRegistrationPage.AddPageElement(2, 28, 3, 2 + 40, 14 + 4, "Amount:");
             ProductRegistrationPage.AddPageElement(1, 28, 3, 2 + 40, 19 + 4, "Location:");
-            ProductRegistrationPage.AddPageElement(7, 28, 1, 2 + 40, 24 + 4, "Register product");
+            ProductRegistrationPage.AddPageElement(8, 28, 1, 2 + 40, 24 + 4, "Register product");
             ProductRegistrationPage.AddPageElement(5, 28, 1, 2 + 40, 28 + 4, "<Back");
         }
 
@@ -44,7 +44,7 @@ namespace ProgrammeringsEksamensprojekt
             ProductOverviewPage.pageElementList.Clear();
             ProductOverviewPage.AddPageElement(0, 30, Convert.ToInt32(DatabaseInterface.CountItems()) + 15, 1 + 40, 1 + 4, "Product overview");
             ProductOverviewPage.AddPageElement(4, 28, Convert.ToInt32(DatabaseInterface.CountItems()) + 3, 2 + 40, 4 + 4, "Product list");
-            ProductOverviewPage.AddPageElement(8, 28, 2, 2 + 40, Convert.ToInt32(DatabaseInterface.CountItems()) + 13, "Remove product - enter product number");
+            ProductOverviewPage.AddPageElement(7, 28, 2, 2 + 40, Convert.ToInt32(DatabaseInterface.CountItems()) + 13, "Remove product - enter product number");
             ProductOverviewPage.AddPageElement(5, 28, 1, 2 + 40, Convert.ToInt32(DatabaseInterface.CountItems()) + 18, "<Back");
         }
 

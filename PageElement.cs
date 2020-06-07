@@ -43,11 +43,18 @@ namespace ProgrammeringsEksamensprojekt
                     break;
                 }else if (c == 8) //Backspace
                 {
-                    str = str.Remove(str.Length - 1);
                     int x = Console.CursorLeft;
                     int y = Console.CursorTop;
-                    Console.Write(" ");
-                    Console.SetCursorPosition(x, y);
+                    if (str.Length > 0)
+                    {
+                        str = str.Remove(str.Length - 1);
+                        Console.Write(" ");
+                        Console.SetCursorPosition(x, y);
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(x + 1, y);
+                    }
                 }
                 else
                 {
@@ -123,21 +130,6 @@ namespace ProgrammeringsEksamensprojekt
                     break;
 
                 case 7:
-                    //Register new product
-                    new Item(Page.ProductRegistrationPage.pageElementList[2].stringInputToDatabase,  //Consider PageElement function taking page as parameter
-                             Page.ProductRegistrationPage.pageElementList[1].stringInputToDatabase,      //Or moving PageElementFunction to Page.cs
-                             Page.ProductRegistrationPage.pageElementList[3].intInputToDatabase, 
-                             Page.ProductRegistrationPage.pageElementList[4].stringInputToDatabase);
-
-                    for (int i = 1; i < 5; i++)
-                    {
-                        Console.SetCursorPosition(Page.ProductRegistrationPage.pageElementList[i].StartX + 1, Page.ProductRegistrationPage.pageElementList[i].StartY + 2);
-                        Console.WriteLine(new string(' ', lineWidth)); //Should prob not be a fixed value
-                    }
-                    Page.Menu(Page.ProductRegistrationPage);
-                    break;
-
-                case 8:
                     //Delete product from product number
                     Console.CursorVisible = true;
                     string productNo = LimitCharacterAmount(20);
@@ -160,6 +152,21 @@ namespace ProgrammeringsEksamensprojekt
                         Console.WriteLine(new string(' ', lineWidth));
                     }
                     Page.Menu(Page.ProductOverviewPage);
+                    break;
+
+                case 8:
+                    //Register new product
+                    new Item(Page.ProductRegistrationPage.pageElementList[2].stringInputToDatabase,  //Consider PageElement function taking page as parameter
+                             Page.ProductRegistrationPage.pageElementList[1].stringInputToDatabase,      //Or moving PageElementFunction to Page.cs
+                             Page.ProductRegistrationPage.pageElementList[3].intInputToDatabase, 
+                             Page.ProductRegistrationPage.pageElementList[4].stringInputToDatabase);
+
+                    for (int i = 1; i < 5; i++)
+                    {
+                        Console.SetCursorPosition(Page.ProductRegistrationPage.pageElementList[i].StartX + 1, Page.ProductRegistrationPage.pageElementList[i].StartY + 2);
+                        Console.WriteLine(new string(' ', lineWidth)); //Should prob not be a fixed value
+                    }
+                    Page.Menu(Page.ProductRegistrationPage);
                     break;
 
             }
